@@ -1,2 +1,2 @@
-# OJ
-PAT/LeetCode/Contest
+# LeetCode
+https://leetcode-cn.com/problemset/algorithms/
