@@ -1,4 +1,4 @@
-# 85 Gray Code
+# 89 Gray Code
 
 >  格雷码：G(i) = i ^ (i/2);			
 
