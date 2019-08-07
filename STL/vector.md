@@ -5,6 +5,7 @@
    ```c++
    vector<int> (长度);
    vector<int> (长度,初值);
+   vector<vector<int>> v(2,vector<int>(4, 0));
    ```
 
 2. algorithm
