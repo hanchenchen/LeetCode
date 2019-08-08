@@ -26,7 +26,6 @@
        int x=0;
        bool ifx=1;
        void inorder(TreeNode* root){
-           
            if(!ans)return;
            if(root->left)inorder(root->left);
            //cout<<root->val<<x<<endl;
@@ -46,7 +45,7 @@
        }
    };
    ```
-
+   
 3. stack
 
    执行用时 :8 ms, 在所有 C++ 提交中击败了99.64%的用户
