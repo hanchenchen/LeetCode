@@ -1,4 +1,4 @@
-# vector
+# Vector
 
 1. Initialization
 
