@@ -33,6 +33,31 @@
 
 3. Dynamic Programing
 
+4. dp [ ] 
+
+   执行用时 :8 ms, 在所有 C++ 提交中击败了92.98%的用户
+
+   内存消耗 :8.5 MB, 在所有 C++ 提交中击败了95.98%的用户
+
+   ```c++
+   class Solution {
+   public:
+       int numDistinct(string s, string t) {
+           if(s.size()==0)return 0;
+           long long dp[t.size()+1]={0};
+           dp[0]=1;
+           for(int i=1;i<=s.size();i++){
+               for(int j=t.size();j>=1;j--){
+                   if(s[i-1]==t[j-1])dp[j]+=dp[j-1];
+               }
+           }
+           return dp[t.size()];
+       }
+   };
+   ```
+
+5. dp [ ] [ ]
+
    执行用时 :0 ms, 在所有 C++ 提交中击败了100.00%的用户
 
    内存消耗 :13.1 MB, 在所有 C++ 提交中击败了59.20%的用户
