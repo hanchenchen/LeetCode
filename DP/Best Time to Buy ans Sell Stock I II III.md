@@ -45,13 +45,37 @@ public:
    };
    ```
 
-2. 有差价就卖，买
+2. 状态转移 [参考][https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/solution/yi-ge-tong-yong-fang-fa-tuan-mie-6-dao-gu-piao-wen]
+
+   执行用时 :16 ms, 在所有 C++ 提交中击败了19.87%的用户
+
+   内存消耗 :9.6 MB, 在所有 C++ 提交中击败了5.21%的用户
+
+   ```c++
+   class Solution {
+   public:
+       int maxProfit(vector<int>& prices) {
+           int n=prices.size();
+           if(!n)return 0;
+           int dp[n][2];// 第i天 持有(0 无 1 有)
+           memset(dp,0,sizeof(dp));
+           dp[0][1]=-prices[0];
+           for(int i=1;i<prices.size();i++){
+               dp[i][1]=max(dp[i-1][1],dp[i-1][0]-prices[i]);
+               dp[i][0]=max(dp[i-1][0],dp[i-1][1]+prices[i]);
+           }
+           return dp[n-1][0];
+       }
+   };
+   ```
+
+3. 有差价就卖，买
 
    执行用时 :8 ms, 在所有 C++ 提交中击败了85.04%的用户
 
    内存消耗 :9.5 MB, 在所有 C++ 提交中击败了33.90%的用户
 
-3. ```c++
+4. ```c++
    class Solution {
    public:
        int maxProfit(vector<int>& prices) {
@@ -102,4 +126,60 @@ public:
    };
    ```
 
-2. 找两个最大差价 
+2. 找一个最大差价 ，找两边的最大值，和中间的最大下降值，（ans要么是 最大差价 和另一个较小差价的和，要么是最大差值中的两个最大值）
+
+   执行用时 :8 ms, 在所有 C++ 提交中击败了92.99%的用户
+
+   内存消耗 :9.5 MB, 在所有 C++ 提交中击败了68.60%的用户
+
+   ```c++
+   class Solution {
+   public:
+       int maxProfit(vector<int>& prices) {
+           if(prices.size()<1)return 0;
+           int ans=0;int m=0;
+           int left=0,right=0;
+           for(int i=0;i<prices.size();i++){
+               if(prices[i]<prices[m]){
+                   m=i;
+               }
+               if(prices[i]-prices[m]>ans){
+                   ans=prices[i]-prices[m];
+                   left=m;right=i;
+               }
+           }
+           m=0;int a1=0;
+           for(int i=0;i<left;i++){
+               if(prices[i]<prices[m]){
+                   m=i;
+               }
+               if(prices[i]-prices[m]>a1){
+                   a1=prices[i]-prices[m];
+               }
+           }
+           m=right;int a2=0;
+           for(int i=right;i<prices.size();i++){
+               if(prices[i]<prices[m]){
+                   m=i;
+               }
+               if(prices[i]-prices[m]>a2){
+                   a2=prices[i]-prices[m];
+               }
+           }
+           m=right;int a3=0;
+           for(int i=right;i>left;i--){
+               if(prices[i]<prices[m]){
+                   m=i;
+               }
+               if(prices[i]-prices[m]>a3){
+                   a3=prices[i]-prices[m];
+               }
+           }
+           //cout<<a1<<" "<<a2<<" "<<a3<<endl;
+           ans=max(max(ans+a1,ans+a2),ans+a3);
+           return ans;
+       }
+   };
+   ```
+
+3. dp
