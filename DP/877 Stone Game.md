@@ -70,4 +70,31 @@
    };
    ```
 
-3. 1
+3. ##### dp [ ] [ ] （斜着遍历数组）
+
+   执行用时 :20 ms, 在所有 C++ 提交中击败了37.52%的用户
+
+   内存消耗 :9.6 MB, 在所有 C++ 提交中击败了27.60%的用户
+
+   ```c++
+   class Solution {
+   public:
+       bool stoneGame(vector<int>& piles) {
+           int n=piles.size();
+           int dp[n][n];
+           memset(dp,0,sizeof(dp));
+           for(int i=0;i<n;i++){
+               dp[i][i]=piles[i];
+           }
+           for(int j=1;j<=n-1;j++){
+               for(int i=0;i+j<n;i++){
+                   dp[i][i+j]=max(piles[i]-dp[i+1][i+j],piles[i+j]-dp[i][i+j-1]);
+               }
+           }
+           if(dp[0][n-1]>0)return true;
+           return false;
+       }
+   };
+   ```
+
+4. 1
