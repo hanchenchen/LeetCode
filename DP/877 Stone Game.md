@@ -97,4 +97,13 @@
    };
    ```
 
-4. 1
+4. Math?
+
+   ```c++
+   class Solution {
+   public:
+       bool stoneGame(vector<int>& piles) {
+          return true;
+       }
+   };
+   ```
