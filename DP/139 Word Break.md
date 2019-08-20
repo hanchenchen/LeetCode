@@ -32,4 +32,45 @@
    };
    ```
 
-2. 1
+2. `dp[][]`
+
+   执行用时 :12 ms, 在所有 C++ 提交中击败了81.37%的用户
+
+   内存消耗 :8.6 MB, 在所有 C++ 提交中击败了98.58%的用户
+
+   - `s.size()`是`unsigned long`，与`int`运算会有误差。
+
+   ```c++
+   class Solution {
+   public:
+       bool wordBreak(string s, vector<string>& wordDict) {
+           int n=s.size();
+           bool ifmatched[n][n];
+           bool dp[n]={0};
+           memset(ifmatched,0,sizeof(ifmatched));
+           for(int i=0;i<wordDict.size();i++){
+               int len=wordDict[i].size();
+               for(int j=0;j<1+(int)s.size()-len;j++){//j<1+s.size()-len WA
+                   if(s.substr(j,len)==wordDict[i])ifmatched[j][j+len-1]=true;
+               }
+           }
+           for(int i=0;i<n;i++){
+               if(ifmatched[0][i]){
+                   dp[i]=true;
+                   //cout<<dp[i]<<endl;
+                   continue;
+               }
+               for(int j=0;j<i;j++){
+                   if(dp[j]&&ifmatched[j+1][i]){
+                       dp[i]=true;
+                       break;
+                   }
+               }
+               //cout<<dp[i]<<endl;
+           }
+           return dp[n-1];
+       }
+   };
+   ```
+
+3. 1
