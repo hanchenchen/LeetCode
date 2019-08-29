@@ -35,3 +35,8 @@
    ```
 
    
+
+## Bash_Game 巴什博奕
+
+> #### if(`n%(m+1)==0`)return false;
+
