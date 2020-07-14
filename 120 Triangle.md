@@ -1,5 +1,27 @@
 # 120 Triangle
 
+#### Python3
+
+执行用时：48 ms, 在所有 Python3 提交中击败了71.45%的用户
+
+内存消耗：14.1 MB, 在所有 Python3 提交中击败了9.09%的用户
+
+```
+class Solution:
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
+        arr = [triangle[0][0]]
+        for i in range(1,len(triangle)):
+            # print(arr)
+            arr.append(arr[i-1]+triangle[i][i])
+            for j in range(i-1,0,-1):
+                arr[j]=min(arr[j],arr[j-1])+triangle[i][j]
+            arr[0]+=triangle[i][0]
+        # print(arr)
+        return min(arr)
+```
+
+##### C++
+
 1. dp [ ] [ ]
 
    执行用时 :8 ms, 在所有 C++ 提交中击败了82.13%的用户
