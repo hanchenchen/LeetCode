@@ -6,7 +6,7 @@
 
 内存消耗：14.1 MB, 在所有 Python3 提交中击败了9.09%的用户
 
-```
+```python
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
         arr = [triangle[0][0]]
