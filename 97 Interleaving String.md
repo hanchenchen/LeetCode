@@ -1,5 +1,32 @@
 # 97 Interleaving String
 
+#### 方法一：动态规划
+
+##### Python3
+
+```python
+class Solution:
+    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
+        if len(s2)+len(s1) != len(s3):
+            return False
+        dp = [[0 for j in range(len(s2)+1)] for i in range(len(s1)+1)]
+        dp[0][0] = 1
+        for k in range(1,len(s3)+1):
+            for i in range(0,min(k+1,len(s1)+1)):
+                j = k-i
+                if j>len(s2):
+                    continue
+                if i>0 and s1[i-1]==s3[k-1] and dp[i-1][j]:
+                    dp[i][j] = 1
+                if j>0 and s2[j-1]==s3[k-1] and dp[i][j-1]:
+                    dp[i][j] = 1
+        return dp[len(s1)][len(s2)]==1
+```
+
+
+
+##### C++
+
 1. arr[]
 
    执行用时 :0 ms, 在所有 C++ 提交中击败了100.00%的用户
